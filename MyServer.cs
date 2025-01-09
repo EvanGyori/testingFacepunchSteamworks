@@ -12,8 +12,12 @@ public class MyServer : SocketManager
 		Console.WriteLine("Server OnConnected");
 		Console.WriteLine();
 
-		IntPtr ptr = new(&test);
-		connection.SendMessage(ptr, 4);
+		unsafe {
+		fixed (Int32* val = &test) {
+			IntPtr ptr = new((void*) val);
+			connection.SendMessage(ptr, 4);
+		}
+		}
 	}
 
 	public override void OnConnecting(Connection connection, ConnectionInfo info)
