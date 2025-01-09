@@ -22,6 +22,8 @@ if (input == "server") {
 				break;
 			} else if (key == ConsoleKey.R) {
 				server.MessageConnections();
+			} else if (key == ConsoleKey.C) {
+				server.DisconnectAll();
 			}
 		}
 	}

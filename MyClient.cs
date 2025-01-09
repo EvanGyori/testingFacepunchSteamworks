@@ -36,6 +36,9 @@ public class MyClient : ConnectionManager
 	{
 		base.OnMessage(data, size, messageNum, recvTime, channel);
 		Console.WriteLine($"Client OnMessage\nsize: {size}\nmessageNum: {messageNum}\nrecvTime: {recvTime}\nchannel: {channel}");
+		unsafe {
+			Console.WriteLine($"data: {*(Int32*)data}");
+		}
 		Console.WriteLine();
 	}
 }

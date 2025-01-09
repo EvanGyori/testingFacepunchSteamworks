@@ -16,6 +16,13 @@ public class MyServer : SocketManager
 		}
 	}
 
+	public void DisconnectAll()
+	{
+		foreach (Connection connection in Connected) {
+			connection.Close();
+		}
+	}
+
 	public override void OnConnected(Connection connection, ConnectionInfo info)
 	{
 		base.OnConnected(connection, info);
