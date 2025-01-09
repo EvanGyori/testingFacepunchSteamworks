@@ -12,18 +12,31 @@ var IP = NetAddress.AnyIp(port);
 string input = Console.ReadLine();
 if (input == "server") {
 	//MyServer server = SteamNetworkingSockets.CreateNormalSocket<MyServer>(IP);
-	SteamNetworkingSockets.CreateRelaySocket<MyServer>();
+	MyServer server = SteamNetworkingSockets.CreateRelaySocket<MyServer>();
+	while (true) {
+		SteamClient.RunCallbacks();
+		server.Receive();
+		if (Console.KeyAvailable) {
+			var key = Console.ReadKey().Key;
+			if (key == ConsoleKey.Q) {
+				break;
+			} else if (key == ConsoleKey.R) {
+				server.MessageConnections();
+			}
+		}
+	}
 } else {
 	// Client
 	//MyClient client = SteamNetworkingSockets.ConnectNormal<MyClient>(NetAddress.LocalHost(port));
-	SteamNetworkingSockets.ConnectRelay<MyClient>((SteamId)(ulong.Parse(input)));
-}
-
-while (true) {
-	SteamClient.RunCallbacks();
-	if (Console.KeyAvailable && Console.ReadKey().Key == ConsoleKey.Q) {
-		break;
+	MyClient client = SteamNetworkingSockets.ConnectRelay<MyClient>((SteamId)(ulong.Parse(input)));
+	while (true) {
+		SteamClient.RunCallbacks();
+		client.Receive();
+		if (Console.KeyAvailable && Console.ReadKey().Key == ConsoleKey.Q) {
+			break;
+		}
 	}
 }
+
 
 SteamClient.Shutdown();

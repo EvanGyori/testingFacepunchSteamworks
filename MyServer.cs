@@ -6,18 +6,22 @@ public class MyServer : SocketManager
 {
 	Int32 test = 3;
 
+	public void MessageConnections()
+	{
+		foreach (Connection connection in Connected) {
+			unsafe { fixed (Int32* val = &test) {
+				IntPtr ptr = new((void*) val);
+				connection.SendMessage(ptr, 4, SendType.Reliable | SendType.NoNagle);
+			}}
+		}
+	}
+
 	public override void OnConnected(Connection connection, ConnectionInfo info)
 	{
 		base.OnConnected(connection, info);
 		Console.WriteLine("Server OnConnected");
 		Console.WriteLine();
 
-		unsafe {
-		fixed (Int32* val = &test) {
-			IntPtr ptr = new((void*) val);
-			connection.SendMessage(ptr, 4);
-		}
-		}
 	}
 
 	public override void OnConnecting(Connection connection, ConnectionInfo info)
