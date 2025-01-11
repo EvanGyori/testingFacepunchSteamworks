@@ -4,6 +4,16 @@ using Steamworks.Data;
 
 public class MyClient : ConnectionManager
 {
+	Int32 test = 321;
+
+	public void MessageConnection()
+	{
+		unsafe { fixed (Int32* val = &test) {
+			IntPtr ptr = new((void*) val);
+			Connection.SendMessage(ptr, 4, SendType.Reliable | SendType.NoNagle);
+		}}
+	}
+
 	public override void OnConnected(ConnectionInfo info)
 	{
 		base.OnConnected(info);
@@ -21,7 +31,7 @@ public class MyClient : ConnectionManager
 	public override void OnConnectionChanged(ConnectionInfo info)
 	{
 		base.OnConnectionChanged(info);
-		Console.WriteLine($"Client OnConnectionChanged\nState: {info.State}\nidentity: {info.Identity}\nEndReason: {info.EndReason}");
+		Console.WriteLine($"Client OnConnectionChanged\nState: {info.State}\nSteamId: {info.Identity.SteamId}\nEndReason: {info.EndReason}");
 		Console.WriteLine();
 	}
 

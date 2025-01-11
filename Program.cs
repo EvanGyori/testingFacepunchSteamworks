@@ -34,8 +34,13 @@ if (input == "server") {
 	while (true) {
 		SteamClient.RunCallbacks();
 		client.Receive();
-		if (Console.KeyAvailable && Console.ReadKey().Key == ConsoleKey.Q) {
-			break;
+		if (Console.KeyAvailable) {
+			var key = Console.ReadKey().Key;
+			if (key == ConsoleKey.Q) {
+				break;
+			} else if (key == ConsoleKey.R) {
+				client.MessageConnection();
+			}
 		}
 	}
 }
