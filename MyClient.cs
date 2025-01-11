@@ -32,6 +32,8 @@ public class MyClient : ConnectionManager
 	{
 		base.OnConnectionChanged(info);
 		Console.WriteLine($"Client OnConnectionChanged\nState: {info.State}\nSteamId: {info.Identity.SteamId}\nEndReason: {info.EndReason}");
+		Console.WriteLine($"Is SteamId? {info.Identity.IsSteamId}");
+		Console.WriteLine($"Detailed Connection: {Connection.DetailedStatus()}");
 		Console.WriteLine();
 	}
 
