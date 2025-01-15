@@ -14,6 +14,10 @@
 	<HintPath>dep2/Facepunch.Steamworks.Posix.dll</HintPath>
 </Reference-->
 
+<ProjectReference Include="Facepunch.Steamworks/Facepunch.Steamworks/Facepunch.Steamworks.Win64.csproj" />
+<Reference Include="dep/libsteam_api.so" />
+<Reference Include="dep/libsteam_api.dylib" />
+
 </ItemGroup>
 
 <ItemGroup Condition="'$(OS)' == 'Windows_NT'">
@@ -26,12 +30,14 @@
 <!--Reference Include="dep2/Facepunch.Steamworks.Win64.dll"/-->
 
 <ProjectReference Include="Facepunch.Steamworks/Facepunch.Steamworks/Facepunch.Steamworks.Win64.csproj" />
+<Reference Include="dep/steam_api64.dll" />
   </ItemGroup>
 
 
 	<ItemGroup>
 		<Compile Remove="Facepunch.Steamworks/**/*" />
-		<Content Include="dep/*" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" Link="%(Filename)%(Extension)" />
+		<!--Content Include="dep/*" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" Link="%(Filename)%(Extension)" /-->
+		<Reference Include="dep/steam_appid.txt" />
 	</ItemGroup>
 
 </Project>
