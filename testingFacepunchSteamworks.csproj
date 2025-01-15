@@ -8,9 +8,26 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
 
-  <ItemGroup><!--PackageReference Include="Facepunch.Steamworks" Version="2.3.1" /-->
-  
-    <ProjectReference Include="..\Facepunch.Steamworks\Facepunch.Steamworks\Facepunch.Steamworks.Win64.csproj" />
+<!--ItemGroup Condition="$(([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform('OSX')))">
+
+<Reference Include="Facepunch.Steamworks.Posix">
+	<HintPath>dep/Facepunch.Steamworks.Posix.dll</HintPath>
+</Reference>
+
+</ItemGroup-->
+
+  <ItemGroup Condition="'$(OS)' == 'Linux'">
+
+<Reference Include="Facepunch.Steamworks.Posix">
+	<HintPath>dep2/Facepunch.Steamworks.Posix.dll</HintPath>
+</Reference>
+
+</ItemGroup>
+
+<ItemGroup Condition="'$(OS)' == 'Windows_NT'">
+<Reference Include="Facepunch.Steamworks.Win64">
+	<HintPath>dep2/Facepunch.Steamworks.Win64.dll</HintPath>
+</Reference>
   </ItemGroup>
 
 	<ItemGroup>
