@@ -8,27 +8,24 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
 
-<!--ItemGroup Condition="$(([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform('OSX')))">
-
-<Reference Include="Facepunch.Steamworks.Posix">
-	<HintPath>dep/Facepunch.Steamworks.Posix.dll</HintPath>
-</Reference>
-
-</ItemGroup-->
-
   <ItemGroup Condition="'$(OS)' == 'Unix'">
 
-<Reference Include="Facepunch.Steamworks.Posix">
+<!--Reference Include="Facepunch.Steamworks.Posix">
 	<HintPath>dep2/Facepunch.Steamworks.Posix.dll</HintPath>
-</Reference>
+</Reference-->
 
 </ItemGroup>
 
 <ItemGroup Condition="'$(OS)' == 'Windows_NT'">
+<!--Reference Include="Facepunch.Steamworks/Facepunch.Steamworks/bin/Debug/net6.0/Facepunch.Steamworks.Win64.dll"/-->
+
 <Reference Include="Facepunch.Steamworks.Win64">
-	<HintPath>dep2/Facepunch.Steamworks.Win64.dll</HintPath>
+<HintPath>dep2/Facepunch.Steamworks.Win64.dll</HintPath>
 </Reference>
+
+<!--ProjectReference Include="Facepunch.Steamworks/Facepunch.Steamworks/Facepunch.Steamworks.Win64.csproj" /-->
   </ItemGroup>
+
 
 	<ItemGroup>
 		<Content Include="dep/*" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" Link="%(Filename)%(Extension)" />
