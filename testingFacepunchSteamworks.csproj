@@ -19,15 +19,18 @@
 <ItemGroup Condition="'$(OS)' == 'Windows_NT'">
 <!--Reference Include="Facepunch.Steamworks/Facepunch.Steamworks/bin/Debug/net6.0/Facepunch.Steamworks.Win64.dll"/-->
 
-<Reference Include="Facepunch.Steamworks.Win64">
+<!--Reference Include="Facepunch.Steamworks.Win64">
 <HintPath>dep2/Facepunch.Steamworks.Win64.dll</HintPath>
-</Reference>
+</Reference-->
 
-<!--ProjectReference Include="Facepunch.Steamworks/Facepunch.Steamworks/Facepunch.Steamworks.Win64.csproj" /-->
+<!--Reference Include="dep2/Facepunch.Steamworks.Win64.dll"/-->
+
+<ProjectReference Include="Facepunch.Steamworks/Facepunch.Steamworks/Facepunch.Steamworks.Win64.csproj" />
   </ItemGroup>
 
 
 	<ItemGroup>
+		<Compile Remove="Facepunch.Steamworks/**/*" />
 		<Content Include="dep/*" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" Link="%(Filename)%(Extension)" />
 	</ItemGroup>
 
