@@ -16,7 +16,7 @@
 
 </ItemGroup-->
 
-  <ItemGroup Condition="'$(OS)' == 'Linux'">
+  <ItemGroup Condition="'$(OS)' == 'Unix'">
 
 <Reference Include="Facepunch.Steamworks.Posix">
 	<HintPath>dep2/Facepunch.Steamworks.Posix.dll</HintPath>
