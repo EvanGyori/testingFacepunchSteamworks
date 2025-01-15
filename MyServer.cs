@@ -25,6 +25,9 @@ public class MyServer : SocketManager
 
 	public override void OnConnected(Connection connection, ConnectionInfo info)
 	{
+		Console.WriteLine(info.Identity.SteamId);
+		Console.WriteLine((new Friend(info.Identity.SteamId)).Name);
+
 		base.OnConnected(connection, info);
 		Console.WriteLine("Server OnConnected");
 		Console.WriteLine();
